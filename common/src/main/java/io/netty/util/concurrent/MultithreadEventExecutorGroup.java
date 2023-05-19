@@ -78,6 +78,7 @@ public abstract class MultithreadEventExecutorGroup extends AbstractEventExecuto
 
         children = new EventExecutor[nThreads];
 
+        // TODO 循环给 children 数组赋值
         for (int i = 0; i < nThreads; i ++) {
             boolean success = false;
             try {

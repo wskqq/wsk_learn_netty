@@ -201,8 +201,10 @@ public class DefaultChannelPipeline implements ChannelPipeline {
         synchronized (this) {
             checkMultiplicity(handler);
 
+            // TODO 创建 AbstractChannelHandlerContext 对象
             newCtx = newContext(group, filterName(name, handler), handler);
 
+            // TODO 将新创建的 AbstractChannelHandlerContext 添加到tail节点的前面
             addLast0(newCtx);
 
             // If the registered is false it means that the channel was not registered on an eventLoop yet.
@@ -215,6 +217,7 @@ public class DefaultChannelPipeline implements ChannelPipeline {
             }
 
             EventExecutor executor = newCtx.executor();
+            // TODO 是否属于同一个线程
             if (!executor.inEventLoop()) {
                 callHandlerAddedInEventLoop(newCtx, executor);
                 return this;
